@@ -1,4 +1,5 @@
 <launch>
     <node pkg="can_send_node" type="can_send_node" name="can_send_node" output="screen">
     </node>
+    <include file="$(find socketcan_bridge)/test/cantopic.launch"/>
 </launch>

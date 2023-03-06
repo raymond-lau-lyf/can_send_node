@@ -18,6 +18,8 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   # can msg
   can_msgs
+
+  socketcan_bridge
 )
 
 ## System dependencies are found with CMake's conventions
@@ -134,6 +136,7 @@ include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
   can_msgs
+  socketcan_bridge
 )
 
 ## Declare a C++ library
