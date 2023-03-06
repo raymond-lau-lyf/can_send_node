@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     imu_msg.orientation.z = 0.5;
 
     can_msgs::Frame can_imu_msg;
-    can_imu_msg.id= 0x001;
+    can_imu_msg.id= 0x123;
     can_imu_msg.dlc=8;
     can_imu_msg.data[0]=1;
     can_imu_msg.data[1]=0;
