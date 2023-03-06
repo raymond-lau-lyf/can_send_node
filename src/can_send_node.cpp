@@ -2,14 +2,7 @@
 #include "can_msgs/Frame.h"
 #include "sensor_msgs/Imu.h"
 
-void Imu_msg_update(sensor_msgs::Imu *imu_msg_p){
-    imu_msg_p->header.stamp=ros::Time::now();
-    imu_msg_p->header.frame_id="imu";
-    imu_msg_p->orientation.w=-0.5;
-    imu_msg_p->orientation.x=0.5;
-    imu_msg_p->orientation.y=0.5;
-    imu_msg_p->orientation.z=0.5;
-}
+void Imu_msg_update(sensor_msgs::Imu *imu_msg_p);
 
 int main(int argc, char *argv[])
 {
@@ -38,6 +31,16 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
+void Imu_msg_update(sensor_msgs::Imu *imu_msg_p){
+    imu_msg_p->header.stamp=ros::Time::now();
+    imu_msg_p->header.frame_id="imu";
+    imu_msg_p->orientation.w=-0.5;
+    imu_msg_p->orientation.x=0.5;
+    imu_msg_p->orientation.y=0.5;
+    imu_msg_p->orientation.z=0.5;
+}
+
 
 // std_msgs/Header header
 //   uint32 seq  
