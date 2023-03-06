@@ -11,6 +11,13 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  # msg
+  std_msgs
+  sensor_msgs
+  geometry_msgs
+  nav_msgs
+  # can msg
+  can_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -72,6 +79,14 @@ find_package(catkin REQUIRED COMPONENTS
 #   DEPENDENCIES
 #   std_msgs
 # )
+generate_messages(
+  DEPENDENCIES
+  geometry_msgs
+  std_msgs
+  nav_msgs
+  sensor_msgs
+)
+
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -118,6 +133,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  can_msgs
 )
 
 ## Declare a C++ library

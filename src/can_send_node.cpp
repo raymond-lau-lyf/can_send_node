@@ -1,13 +1,15 @@
-#include"ros/ros.h"
-// #include"learning_vehicle/Frame.h"
+#include "ros/ros.h"
+#include "can_msgs/Frame.h"
+#include "sensor_msgs/Imu.h"
 
 int main(int argc, char *argv[])
 {
     setlocale(LC_ALL,"");
     ros::init(argc,argv,"can_send");
     ros::NodeHandle nh;
-    // ros::Publisher pub=nh.advertise<learning_vehicle::Frame>("sent_messages",10);
+    ros::Publisher pub=nh.advertise<sensor_msgs::Imu>("pub_imu_data",10);
 
+    sensor_msgs::Imu imu_msg;
     // learning_vehicle::Frame t_message;
     // t_message.id=161;
     // t_message.dlc=8;
@@ -24,7 +26,7 @@ int main(int argc, char *argv[])
     while (ros::ok())
     {
         ROS_INFO("发送成功！");
-        // pub.publish(t_message);
+        pub.publish(imu_msg);
         rate.sleep();
         ros::spinOnce();
     }
