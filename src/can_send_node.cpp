@@ -9,19 +9,16 @@ static void toEulerAngle(const double x, const double y, const double z, const d
     double sinr_cosp = +2.0 * (w * x + y * z);
     double cosr_cosp = +1.0 - 2.0 * (x * x + y * y);
     roll = atan2(sinr_cosp, cosr_cosp);
-
     // pitch (y-axis rotation)
     double sinp = +2.0 * (w * y - z * x);
     if (fabs(sinp) >= 1)
         pitch = copysign(M_PI / 2, sinp);  // use 90 degrees if out of range
     else
         pitch = asin(sinp);
-
     // yaw (z-axis rotation)
     double siny_cosp = +2.0 * (w * z + x * y);
     double cosy_cosp = +1.0 - 2.0 * (y * y + z * z);
     yaw = atan2(siny_cosp, cosy_cosp);
-    //    return yaw;
 }
 
 void Imu_msg_update(can_msgs::Frame *send_msg_p);
@@ -80,7 +77,6 @@ void Imu_msg_update(can_msgs::Frame *send_msg_p) {
         send_msg_p->data[6] = 'e';
         start = true;
     }
-
     data_updated = false;  // set upd flag to false
 }
 
