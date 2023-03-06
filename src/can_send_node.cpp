@@ -1,8 +1,10 @@
 #include "can_send_node/can_send_node.h"
 
+bool data_updated=false;
+
 void Imu_msg_update(can_msgs::Frame *send_msg_p);
 void ImuCallback(const sensor_msgs::ImuConstPtr &imu_msg){
-
+    data_updated=true;
 }
 int main(int argc, char *argv[]) {
     setlocale(LC_ALL, "");
@@ -10,7 +12,7 @@ int main(int argc, char *argv[]) {
     ros::NodeHandle nh;
 
     ros::Subscriber sub = nh.subscribe<sensor_msgs::Imu>("/sub_imu_data", 10,ImuCallback);
-    ros::Publisher pub_imu = nh.advertise<can_msgs::Frame>("pub_can_imu_data", 10);
+    ros::Publisher pub_imu = nh.advertise<can_msgs::Frame>("/pub_can_imu_data", 10);
 
     sensor_msgs::Imu imu_msg;
     imu_msg.header.seq = 0;
@@ -54,6 +56,7 @@ void Imu_msg_update(can_msgs::Frame *send_msg_p) {
     send_msg_p->data[5]=0;
     send_msg_p->data[6]=1;
     send_msg_p->data[7]=0;
+    data_updated=false;
 }
 
 // std_msgs/Header header
