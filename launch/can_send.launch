@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="can_send_node" type="can_send_node" name="can_send_node" output="screen">
+    </node>
+</launch>
