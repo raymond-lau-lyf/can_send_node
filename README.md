@@ -3,5 +3,7 @@ A roapackage to publish sensor_msgs/Imu imu topic and convert it to euler angle,
 
 ## usage 
 
-''sudo ifconfig can0 up ''
-''roslaunch can_send_node can_send.launch''
+'' sudo ifconfig can0 down ''
+'' sudo ip link set can0 type can bitrate 1000000 ''
+'' sudo ifconfig can0 up ''
+'' roslaunch can_send_node can_send.launch ''
