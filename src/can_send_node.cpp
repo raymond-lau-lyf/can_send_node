@@ -8,7 +8,10 @@ int main(int argc, char *argv[]) {
     setlocale(LC_ALL, "");
     ros::init(argc, argv, "can_send");
     ros::NodeHandle nh;
+
     ros::Publisher pub = nh.advertise<sensor_msgs::Imu>("pub_imu_data", 10);
+
+    ros::Publisher pub_imu = nh.advertise<can_msgs::Frame>("pub_can_imu_data", 10);
 
     sensor_msgs::Imu imu_msg;
     imu_msg.header.seq = 0;
@@ -18,11 +21,25 @@ int main(int argc, char *argv[]) {
     imu_msg.orientation.x = 0.5;
     imu_msg.orientation.y = 0.5;
     imu_msg.orientation.z = 0.5;
-    ros::Rate rate(500);
+
+    can_msgs::Frame can_imu_msg;
+    can_imu_msg.id= 0x001;
+    can_imu_msg.dlc=8;
+    can_imu_msg.data[0]=1;
+    can_imu_msg.data[1]=0;
+    can_imu_msg.data[2]=1;
+    can_imu_msg.data[3]=0;
+    can_imu_msg.data[4]=1;
+    can_imu_msg.data[5]=0;
+    can_imu_msg.data[6]=1;
+    can_imu_msg.data[7]=0;
+
+    ros::Rate rate(10);
     while (ros::ok()) {
-        ROS_INFO("发送成功！");
+        ROS_INFO("Sending");
         Imu_msg_update(&imu_msg);
         pub.publish(imu_msg);
+        pub_imu.publish(can_imu_msg);
         rate.sleep();
         ros::spinOnce();
     }
