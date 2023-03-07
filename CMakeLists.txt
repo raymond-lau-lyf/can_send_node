@@ -18,8 +18,6 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   # can msg
   can_msgs
-
-  socketcan_bridge
 )
 
 ## System dependencies are found with CMake's conventions

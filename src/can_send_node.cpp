@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
     ros::init(argc, argv, "can_send");
     ros::NodeHandle nh;
 
-    ros::Subscriber sub = nh.subscribe<sensor_msgs::Imu>("/imu/data_raw", 10, ImuCallback);
+    ros::Subscriber sub = nh.subscribe<sensor_msgs::Imu>("/imu/data", 10, ImuCallback);
     ros::Publisher pub_imu = nh.advertise<can_msgs::Frame>("/pub_can_imu_data", 10);
 
     can_msgs::Frame can_imu_msg;
